@@ -1,0 +1,76 @@
+- [2026.06.02](#20260602)
+    - [TraGUS updates](#tragus-updates)
+    - [Quality settings](#quality-settings)
+    - [Quality preset](#quality-preset)
+    - [Confirm dialogs](#confirm-dialogs)
+    - [Return buttons](#return-buttons)
+    - [Double light setup](#double-light-setup)
+
+
+# 2026.06.02
+
+### TraGUS updates
+
+Dirtiness tracking - update a flag when settings are modified to be able to check if there's unsaved changes
+
+Changed signal value bug fix - the emited value was not the actual effective value, which is missleading. Updated it so it does emit with the effective value.
+
+### Quality settings
+
+Added various new settings for video quality
+- Shadows (positionnal & directionnal)
+- Ambient occlusion
+- SSIL
+- SSR
+- Glow quality
+- Anti aliasing (not yet very stable with the current outlines shader)
+
+
+\+ localization  
+\+ default config
+
+### Quality preset
+
+Added a preset button for quality settings, that automatically update the different individual quality settings.
+
+### Confirm dialogs
+
+Some menus interractions deserved a confirm dialog.
+- Quitting
+- -leaving/surrender game
+- saving/aborting settings changes.
+
+Also slightly changed the style of the confirm dialog.
+
+### Return buttons
+
+Some menus did not include a return button. I'm used to rely on pressing escape, but some users might be confused. Having return clickable buttons wherever it could be required ensures the user is not lost !
+
+We could later add a Escape key hint next to the button. 
+
+### Double light setup
+
+Shadows can be difficult to render, especially on low-end devices. There's muitliple techniques to render them, but to consume little resources, they will tend to either look very blocky, have clear different resolution steps, be grainy/have acnee, and many other artifacts, very obvious to the user.
+
+One way to completely avoid all these issues, is through light baking.
+
+Light baking is a process that allows to pre-render complex lighting behaviors as textures and masks. I already used it to compute indirect and ambient lighting, which can help produce pretty realistic looking light with very little resources.
+
+But it is also possible to bake casted shadows in the light baking process, into a shadow mask.
+
+Yet, this shadow mask is of course baked FROM static elements, and FOR static elements.
+It means it cannot be used to cast shadows onto dynamic elements, and dynamic elements do not contribute to this mask.
+
+For example "it cannot be used to cast shadows onto dynamic elements" - let's take a static umbrella, with which the shadow mask is baked, it will thus cast a static shadow onto the terrain. But if a character goes under this umbrella, it will not receive that static shadow, thus remain fully lighted if no dynamic shadow is produced by the umbrella, which will look odd.
+
+The best compromise would be to go with a hybrid system, combining static and dynamic shadows.
+
+We could simply overlay shadow mask and dynamic shadows, but the shadow mask is almost always better looking that the dynamic shadows, and overlaying both can still let us see all the artifacts produced by the dynamic lighting, in places where we could simply fully rely on the shadow mask (that is, the static elements).
+
+So instead of an overlay, we can split the light in two -
+- One light is casted on the static elements only, (e.g. the terrain) and has shadows casted by the dynamic elements - the terrain can thus receive the casted shadows of dynamic elements (character going out of the umbrella example)
+- The other light is casted on every elements but the static ones, and has shadows casted by every element, including static ones - the dynamic element can thus receive the casted shadows of the terrain (character under the umbrella example), but the terrain does not receive its own shadow (avoid blocky overlay).
+
+In this setup, the static elements will always only receive the combination of the static shadows from itself + the dynamic shadows from dynamic elements, no mix up.
+The dynamic elements will receive all shadows.
+

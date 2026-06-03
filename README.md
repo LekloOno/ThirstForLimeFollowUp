@@ -2,7 +2,11 @@
 
 Some chronological weekly reports of the main advancments.
 
-I try to sometimes go a little in depth in the techniques used, intentions, problems and technical constraints, but some of the earliest weeks are a lot less detailed as I just started writing these reports recently, I might come back to it later.
+I try to sometimes go a little in depth in the techniques used, intentions, problems and technical constraints, but some of the earliest weeks are a lot less detailed as I just started writing these reports recently, I might come back to it later.- [week 1](weekly/week1.md) (WIP)
+- [week 2](weekly/week2.md) (WIP)
+- [week 3](weekly/week3.md)
+- [week 4](weekly/week4.md)
+- [week 5](weekly/week2.md) (ON GOING)
 
 
 ## Patch notes briefs
