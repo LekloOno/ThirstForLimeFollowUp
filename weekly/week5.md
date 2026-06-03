@@ -63,6 +63,8 @@ It means it cannot be used to cast shadows onto dynamic elements, and dynamic el
 
 For example "it cannot be used to cast shadows onto dynamic elements" - let's take a static umbrella, with which the shadow mask is baked, it will thus cast a static shadow onto the terrain. But if a character goes under this umbrella, it will not receive that static shadow, thus remain fully lighted if no dynamic shadow is produced by the umbrella, which will look odd.
 
+On the other hand, "dynamic elements do not contribute to this mask", it means if the character now moves out of the umbrella, if the terrain only rely on its static baked shadow mask, it won't receive the shadow of the character, as it is dynamic.
+
 The best compromise would be to go with a hybrid system, combining static and dynamic shadows.
 
 We could simply overlay shadow mask and dynamic shadows, but the shadow mask is almost always better looking that the dynamic shadows, and overlaying both can still let us see all the artifacts produced by the dynamic lighting, in places where we could simply fully rely on the shadow mask (that is, the static elements).
