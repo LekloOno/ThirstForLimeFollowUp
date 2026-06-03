@@ -11,6 +11,7 @@ I try to sometimes go a little in depth in the techniques used, intentions, prob
 
 ## Patch notes briefs
 
-Some compact briefs that only focus on the user-side new features, by new version.
+Some compact briefs that only focus on the user side, by new version, not necessarily chronological and structured by features.
 
 I don't mention too technical aspects, intentions, constraints, just list out newly implemented features/fixes/changes/tweaks that are relevant to the user.
+- [v0.2](patch_notes_briefs/v0.2.md)
