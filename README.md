@@ -7,7 +7,7 @@ I try to sometimes go a little in depth in the techniques used, intentions, prob
 - [week 2](weekly/week2.md) (WIP)
 - [week 3](weekly/week3.md)
 - [week 4](weekly/week4.md)
-- [week 5](weekly/week2.md) (ON GOING)
+- [week 5](weekly/week5.md) (ON GOING)
 
 
 ## Patch notes briefs
