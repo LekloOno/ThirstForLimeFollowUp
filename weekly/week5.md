@@ -1,3 +1,5 @@
+# 2026.06.02
+
 - [2026.06.02](#20260602)
     - [TraGUS updates](#tragus-updates)
     - [Quality settings](#quality-settings)
@@ -5,9 +7,12 @@
     - [Confirm dialogs](#confirm-dialogs)
     - [Return buttons](#return-buttons)
     - [Double light setup](#double-light-setup)
+- [2026.06.03](#20260603)
+    - [Enemies aim \& rotation rework](#enemies-aim--rotation-rework)
+    - [Optimizations](#optimizations)
+    - [Better ledge climb](#better-ledge-climb)
+    - [Fixes](#fixes)
 
-
-# 2026.06.02
 
 ### TraGUS updates
 
@@ -76,3 +81,39 @@ So instead of an overlay, we can split the light in two -
 In this setup, the static elements will always only receive the combination of the static shadows from itself + the dynamic shadows from dynamic elements, no mix up.
 The dynamic elements will receive all shadows.
 
+# 2026.06.03
+
+### Enemies aim & rotation rework
+
+The aiming and rotation behaviors are now extracted as independant components, to unbloat the E_Enemy script a bit.
+
+Besides, they have been reworked.
+
+The rotation now introduces a lerping speed for the rotation, it is not instant anymore, and a "behind" delay has also been introduced : when the player is behind the enemy, it won't turn around right away, but have a little configurable delay, and as long as the player is considered behind the enemy, he won't shoot.
+
+This notably finally allows the player to benefit from the back stab mechanic !
+
+### Optimizations
+
+I further optimized the game with very slight changes -
+
+I pushed occlusion culling further, by completely covering the map with the right occluders, and occluded masks.
+
+I made so enemies animations are stopped whenever they are out of screen, centralized aim randomization, and made so sight detection and spread computation is done on an evenly spread 16 ticks, that is, each enemy with a given id computes spread and sight detection for every `tick & 15` equal to `id & 15`.
+
+### Better ledge climb
+
+The ledge climb would not feel super intuitive in some cases, and its detection margin weren't great, leading to unexpected behaviors.
+
+The ledge climb works by multiple spatial detection, but notably, it is only possible to do a ledge climb if the "high head" cast is not obstructed. This cast was performed in the direction of the playe's view, but it was not representing the actual climb intent well.
+
+The detection now uses the ledge normal as the head cast direction instead, with a simple ray cast. Might use a shape cast later on to avoid edge cases were the ray cast passes in small holes.
+
+The ledge climb stop margin and minimum height margin were also not ideal, and could lead in some object bein unexpectedly un-climbable, or some climb to last longer than expected when trying to climb over very narrow platforms. They have been adjusted.
+
+Besides, it is now possible to cancel ledgeclimb by pressing the backward key.
+
+### Fixes
+
+- Sprint mode would not update properly dued to ambiguous UserSetting.Instance reference.
+- Dash would cancel melee completely if the active weapon is melee, although it should just sleep it.
