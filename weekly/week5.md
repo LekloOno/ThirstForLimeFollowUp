@@ -12,6 +12,17 @@
     - [Optimizations](#optimizations)
     - [Better ledge climb](#better-ledge-climb)
     - [Fixes](#fixes)
+- [2026.06.04](#20260604)
+    - [Recoil system](#recoil-system)
+    - [Misc](#misc)
+    - [Fixes](#fixes-1)
+- [2026.06.05](#20260605)
+    - [Scripted spawn position](#scripted-spawn-position)
+    - [Low health cues](#low-health-cues)
+    - [Enemy rotator/aimer](#enemy-rotatoraimer)
+    - [Fixes](#fixes-2)
+- [2026.06.07](#20260607)
+    - [Misc](#misc-1)
 
 
 ### TraGUS updates
@@ -117,3 +128,60 @@ Besides, it is now possible to cancel ledgeclimb by pressing the backward key.
 
 - Sprint mode would not update properly dued to ambiguous UserSetting.Instance reference.
 - Dash would cancel melee completely if the active weapon is melee, although it should just sleep it.
+
+# 2026.06.04
+
+### Recoil system
+
+Recoil is now fully frame independant !
+
+The system was already "delta-scaled" but accumulation of accuracy errors could lead to significant difference by frame rate.
+
+The recoil system is now fully controlled in the fixed-physics process, and interpollated in frame process to keep the visuals smooth.
+
+The responsibility of the camera control and its API have also been clarified, and is now more robust.
+
+### Misc
+- Scoreboard entries now also have a hover/click sound
+- Backstab angle is now a little wider, thus more forgiving
+- A little background wind sound
+
+### Fixes
+
+- Switch to pre-condition was wrong, the direct switch to weapon was hard-stucked if you holstered the same weapon previously.
+- Some buttons were not bound to their hover/click sound.
+
+# 2026.06.05
+
+### Scripted spawn position
+
+Added an option in SC_SequenceSpawner to spawn enemies randomly in a list of positions.
+
+### Low health cues
+
+Added some cues to help the player feel that he's in danger -
+- a low health red pulsing vignette when his health is getting low (flesh health)
+- filtering and reverb on the sfx bus when he's near death
+
+### Enemy rotator/aimer
+
+Made the rotator and aimer modules fully independant.
+
+Rotator would be responsible for updating the shooting state when the player was in the back of the enemy.
+
+This was made to avoid recomputing angles, but it is not worth the spaghetti.
+
+Much clearer to have truly independant modules.
+
+###  Fixes
+
+- Melee did not benefit from damage pickup
+- Keybinding settings weren't properly updating the "hasBeenModified" flag on settings server
+- Random position generator for SC_SequenceSpawner now iterates on occluded space, to try and find a free position, avoiding spawning ennemies inside walls.
+
+
+# 2026.06.07
+
+### Misc
+- Made enemy an PHX_ListenPoolObject instead of simple pool object
+- Balanced the double jump, its physics and reduced cost
