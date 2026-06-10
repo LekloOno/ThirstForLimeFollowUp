@@ -16,3 +16,4 @@ Some compact briefs that only focus on the user side, by new version, not necess
 
 I don't mention too technical aspects, intentions, constraints, just list out newly implemented features/fixes/changes/tweaks that are relevant to the user.
 - [v0.2](patch_notes_briefs/v0.2.md)
+- [v0.2.1](patch_notes_briefs/v0.2.1.md)
