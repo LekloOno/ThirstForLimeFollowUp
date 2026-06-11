@@ -51,3 +51,16 @@ The editor now comes with a list of selectable presets, and also allows the user
 I use a little rust script to save my weapon assets as json registries, since relying on `res://` directory exploration is not reliable in export build in godot 4.6.
 
 I updated this script to be more flexible, so it's easier to use for any kind of data. Notably, so I can save crosshair presets.
+
+# 2026.06.11
+
+### Crosshair editor
+
+#### Fixes
+
+Fixed a few bugs in the presets system, notably protect presets from edition.
+
+#### Save, import, export system
+
+The editor now comes with a fully functionnal import/export/save system.
+You can save custom crosshairs, and share them by exporting/importing them in a pretty straight forward UI.
