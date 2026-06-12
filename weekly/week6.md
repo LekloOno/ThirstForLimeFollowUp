@@ -1,5 +1,23 @@
 # 2026.06.09
 
+- [2026.06.09](#20260609)
+    - [Crosshair editor](#crosshair-editor)
+    - [ui\_num\_input propagation fix](#ui_num_input-propagation-fix)
+    - [Time scaler](#time-scaler)
+- [2026.06.10](#20260610)
+    - [Jump mechanics tweak](#jump-mechanics-tweak)
+      - [Fatigue](#fatigue)
+      - [Coyote time](#coyote-time)
+    - [Crosshair editor](#crosshair-editor-1)
+      - [Renderer](#renderer)
+      - [Layers order edit](#layers-order-edit)
+      - [Presets \& Saved](#presets--saved)
+    - [Tres scanner](#tres-scanner)
+- [2026.06.11](#20260611)
+    - [Crosshair editor](#crosshair-editor-2)
+      - [Fixes](#fixes)
+      - [Save, import, export system](#save-import-export-system)
+
 ### Crosshair editor
 
 A new very modular crosshair editor, saved into your user settings.
