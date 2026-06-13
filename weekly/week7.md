@@ -6,6 +6,8 @@
     - [Ledge vault](#ledge-vault)
     - [Double jump propeller input rework](#double-jump-propeller-input-rework)
     - [Fixes](#fixes)
+- [2026.06.13](#20260613)
+    - [Double jump propeller input UI](#double-jump-propeller-input-ui)
 
 ### Crosshair Editor
 
@@ -39,3 +41,10 @@ The user can mix different modes, as he wishes, although jump + dash and jump fa
 ### Fixes
 
 - GL_Picker was not cleansing damage multiplier, we moved responsibility of cleansing effects to the GL_Picker previously, but forgot to handle damage multiplier. 
+
+
+# 2026.06.13
+
+### Double jump propeller input UI
+
+Added the proper ui elements for the user to be able to edit the new double jump modes and options.
