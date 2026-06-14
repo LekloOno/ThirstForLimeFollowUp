@@ -24,4 +24,4 @@ I don't mention too technical aspects, intentions, constraints, just list out ne
 Hot fixes:
 - [v0.2.1](patch_notes_briefs/v0.2.1.md)
 - [v0.2.2](patch_notes_briefs/v0.2.2.md)
-- [v0.2.3](patch_notes_briefs/v0.2.3.md)
+- [v0.2.3](patch_notes_briefs/v0.2.3.md) (ON GOING)
