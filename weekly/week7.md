@@ -13,6 +13,10 @@
     - [Double jump propeller input UI fix](#double-jump-propeller-input-ui-fix)
     - [Update tragus defaults](#update-tragus-defaults)
     - [Sequence Spawner random position clip fix](#sequence-spawner-random-position-clip-fix)
+- [2026.06.15](#20260615)
+    - [Crouch mode setting](#crouch-mode-setting)
+    - [Slam rework](#slam-rework)
+    - [TraGUS .NET interoperability rework](#tragus-net-interoperability-rework)
 
 ### Crosshair Editor
 
@@ -77,3 +81,37 @@ Updated outlines default settings, and added the double jump mode default settin
 ### Sequence Spawner random position clip fix
 
 The new spawning option, to use a list of specific positions, was not checking for potential clipping. Typically, two enemies could spawn at the exact same position, at the same time, making them clip and resulting in unexpected physics soup.
+
+
+# 2026.06.15
+
+### Crouch mode setting
+
+Added a crouch mode setting, to allow hold or toggle mode.
+
+### Slam rework
+
+Slam has been extracted from the dash code, it is now an independant component, just like the double jump prior to that.
+
+Besides, its input mode has been reworked. It now has similar modes to the double jump -
+- Dedicated input, for an explicit input to be used
+- Quick crouch/tap crouch - triggers when the crouch is quickly started and stopped, that is a quick tap of the input in hold crouch mode, and a double tap in toggle mode.
+- Dash+Crouch, the old method, that triggers when dash is pressed right after a crouch input.
+
+The slam now also has its own dedidated sound.
+
+The independant nature of this new slam made a a bug immerge, that was pre-shoted, even before it was actually witnessed, but that I kept as I thought it might be actually interesting - it should be possible to start a dash as you're still slamming, and this would base the dash velocity on the slam velocity, which can grant huge amount of speed. (It should also be possible to slam as you're dashing, but there isn't much obvious benefits out of this.)
+
+Indeed, it was observed in play test, but as for now, I feel this mechanic is kinda fun, and don't plan to fix it. Maybe we should better control the extend to which this mechanic can work, eventually. For now, I'll leave it as is.
+
+### TraGUS .NET interoperability rework
+
+TraGUS was based on huge code smell.
+
+I was using a static instance inside the base abstract class, thinking it could act as a static reference in a rust trait, but c# works differently, and the instance would be overriden by each new setting.
+
+For most of the code, it did not make much differences. Many of the ui glue was developped in gdscript, so not using the static reference but the autoload reference. But it would eventually break, and it did, while developping the crouch mode setting.
+
+I reworked the way UserSetting is thought for .NET interoperability, by only introducing the concept of static instance inside a UserSetting<T> super class, ensuring the instance is unique to each implementor.
+
+Besides, I added even more .NET support, with different levels of wrapping, notably a UserSetting<T, U> which allows to handle UserSetting with explicit and strict types, as well as a familly of templates that preimplement most of the boilerplate, for diverse types, such as different numeric types, enums, flags, etc.
