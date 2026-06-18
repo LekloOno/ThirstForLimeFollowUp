@@ -1,5 +1,6 @@
-# 2026.06.09
+# Week 6
 
+- [Week 6](#week-6)
 - [2026.06.09](#20260609)
     - [Crosshair editor](#crosshair-editor)
     - [ui\_num\_input propagation fix](#ui_num_input-propagation-fix)
@@ -34,6 +35,8 @@
     - [Crouch mode setting](#crouch-mode-setting)
     - [Slam rework](#slam-rework)
     - [TraGUS .NET interoperability rework](#tragus-net-interoperability-rework)
+
+# 2026.06.09
 
 ### Crosshair editor
 

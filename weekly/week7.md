@@ -1,3 +1,6 @@
+# Week 7
+
+- [Week 7](#week-7)
 - [2026.06.16](#20260616)
     - [FistsFire charge ui](#fistsfire-charge-ui)
     - [Elaborating a pitch](#elaborating-a-pitch)

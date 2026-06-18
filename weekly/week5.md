@@ -1,5 +1,6 @@
-# 2026.06.02
+# Week 5
 
+- [Week 5](#week-5)
 - [2026.06.02](#20260602)
     - [TraGUS updates](#tragus-updates)
     - [Quality settings](#quality-settings)
@@ -24,6 +25,7 @@
 - [2026.06.07](#20260607)
     - [Misc](#misc-1)
 
+# 2026.06.02
 
 ### TraGUS updates
 

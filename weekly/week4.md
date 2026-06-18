@@ -1,3 +1,6 @@
+# Week 4
+
+- [Week 4](#week-4)
 - [2026.05.26](#20260526)
     - [VFX\_MovingLightObject jitter fix](#vfx_movinglightobject-jitter-fix)
     - [Allow unscaled reload](#allow-unscaled-reload)
