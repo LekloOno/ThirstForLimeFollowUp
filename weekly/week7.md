@@ -69,6 +69,8 @@ Made the loading ui a little more visible, and quickly cleaned some simple warni
 While waiting for the score API to respond, we now display a little loading icon.
 Besides, if any error occurs, it is displayed in the scoreboard.
 
+The scoreboard is also now scrollable.
+
 ### Window mode fix
 
 Windowed mode was buggy, fighting against OS-level optimization. One of the problem was that windows(OS) optimizes windows(program windows eh) that cover the entire screen as fullscreen, and it seems its using the fixed project viewport size as the "windows size" for some reason ? The current, quirky, fix, is to use a different view port size than screen size.
