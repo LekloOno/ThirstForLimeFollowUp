@@ -9,7 +9,7 @@ I try to sometimes go a little in depth in the techniques used, intentions, prob
 - [week 4](weekly/week4.md)
 - [week 5](weekly/week5.md)
 - [week 6](weekly/week6.md)
-- [week 7](weekly/week7.md) (ON GOING)
+- [week 7](weekly/week7.md)
 
 
 ## Patch notes briefs
@@ -24,4 +24,4 @@ I don't mention too technical aspects, intentions, constraints, just list out ne
 Hot fixes:
 - [v0.2.1](patch_notes_briefs/v0.2.1.md)
 - [v0.2.2](patch_notes_briefs/v0.2.2.md)
-- [v0.2.3](patch_notes_briefs/v0.2.3.md) (ON GOING)
+- [v0.2.3](patch_notes_briefs/v0.2.3.md)
