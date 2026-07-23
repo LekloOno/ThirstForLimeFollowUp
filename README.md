@@ -10,6 +10,7 @@ I try to sometimes go a little in depth in the techniques used, intentions, prob
 - [week 5](weekly/week5.md)
 - [week 6](weekly/week6.md)
 - [week 7](weekly/week7.md)
+- [week 8](weekly/week8.md) (ON GOING)
 
 
 ## Patch notes briefs
@@ -21,7 +22,21 @@ I don't mention too technical aspects, intentions, constraints, just list out ne
 
 ### [v0.2](patch_notes_briefs/v0.2.md)    
 
-Hot fixes:
-- [v0.2.1](patch_notes_briefs/v0.2.1.md)
-- [v0.2.2](patch_notes_briefs/v0.2.2.md)
-- [v0.2.3](patch_notes_briefs/v0.2.3.md)
+Brief :
+- [v0.2](patch_notes_briefs/v0.2-brief.md)
+
+Hot fixes :
+- [v0.2.0](patch_notes_briefs/v0.2.x/v0.2.0.md) - Reload system overhaul and more.
+- [v0.2.1](patch_notes_briefs/v0.2.x/v0.2.1.md) - Various.
+- [v0.2.2](patch_notes_briefs/v0.2.x/v0.2.2.md) - Crosshair editor + Various.
+- [v0.2.3](patch_notes_briefs/v0.2.x/v0.2.3.md) - Various QoF and feedback.
+- [v0.2.4](patch_notes_briefs/v0.2.x/v0.2.4.md) - Data base rework (notably for retro-compatibility).
+
+
+### [v0.3](patch_notes_briefs/v0.3.md) (ON GOING)
+
+Brief :
+- [v0.3](patch_notes_briefs/v0.3-brief.md)
+
+Hot fixes :
+- [v0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md) - Fight the sectors + Various.
