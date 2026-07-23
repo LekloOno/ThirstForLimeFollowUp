@@ -34,6 +34,8 @@ Some compact briefs that only focus on the user side, by new version, not necess
 
 I don't mention too technical aspects, intentions, constraints, just list out newly implemented features/fixes/changes/tweaks that are relevant to the user.
 
+The major version briefs, however, do depict the overall intentions, goals and approaches of each new major, yet without delving in too much details.
+
 ### [v0.1 - Sand pit arena](patch_notes_briefs/v0.1-brief.md)
 
 Brief :
