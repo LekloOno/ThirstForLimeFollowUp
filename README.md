@@ -18,7 +18,7 @@ Last published version - Major [0.2](patch_notes_briefs/v0.2-brief.md), minor [0
 
 Last completed version - Major [0.3](patch_notes_briefs/v0.3-brief.md), minor [0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md).
 
-On going version - Major [0.3](patch_notes_briefs/v0.3-brief.md), minor [0.3.1](patch_notes_briefs/).
+On going version - Major [0.3](patch_notes_briefs/v0.3-brief.md), minor [0.3.1](roadmap/v0.3-roadmap.md#031---more-ui).
 
 ### Coming up
 
