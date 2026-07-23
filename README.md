@@ -1,17 +1,32 @@
-## Weekly
+# Thirs for lime - follow up
 
-Some chronological weekly reports of the main advancments.
+- [Thirs for lime - follow up](#thirs-for-lime---follow-up)
+  - [Road map](#road-map)
+    - [On going](#on-going)
+    - [Coming up](#coming-up)
+  - [Patch notes briefs](#patch-notes-briefs)
+    - [v0.1 - Sand pit arena](#v01---sand-pit-arena)
+    - [v0.2 - Tackling feedback](#v02---tackling-feedback)
+    - [v0.3 - A full scale experience (ON GOING)](#v03---a-full-scale-experience-on-going)
+  - [Weekly](#weekly)
 
-I try to sometimes go a little in depth in the techniques used, intentions, problems and technical constraints, but some of the earliest weeks are a lot less detailed as I just started writing these reports recently, I might come back to it later.
-- [week 1](weekly/week1.md) (WIP)
-- [week 2](weekly/week2.md) (WIP)
-- [week 3](weekly/week3.md)
-- [week 4](weekly/week4.md)
-- [week 5](weekly/week5.md)
-- [week 6](weekly/week6.md)
-- [week 7](weekly/week7.md)
-- [week 8](weekly/week8.md) (ON GOING)
+## Road map
 
+### On going
+
+Last published version - Major [0.2](patch_notes_briefs/v0.2-brief.md), minor [0.2.4](patch_notes_briefs/v0.2.x/v0.2.4.md).
+
+Last completed version - Major [0.3](patch_notes_briefs/v0.3-brief.md), minor [0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md).
+
+On going version - Major [0.3](patch_notes_briefs/v0.3-brief.md), minor [0.3.1](patch_notes_briefs/).
+
+### Coming up
+
+The current plan is as follows, but later planned priorities are subject to change.
+- [v0.3 roadmap](roadmap/v0.3-roadmap.md) - Full scale map and mode
+- [v0.4 roadmap](roadmap/v0.4-roadmap.md) - Consumeable items
+- [v0.5 roadmap](roadmap/v0.5-roadmap.md) - Ultimates
+- [v0.6 roadmap](roadmap/v0.6-roadmap.md) - View models
 
 ## Patch notes briefs
 
@@ -44,3 +59,19 @@ Brief :
 
 Hot fixes :
 - [v0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md) - Fight the sectors + Various.
+
+## Weekly
+
+This game became part of my first year of master's degree project in may 2026.
+
+Because of that, I wrote some weekly reports following its advancement during that time.
+
+I tried to sometimes go a little in depth in the techniques used, intentions, problems and technical constraints, but some of the earliest weeks are a lot less detailed as I started writing these reports later in the process.
+- [week 1](weekly/week1.md) (WIP)
+- [week 2](weekly/week2.md) (WIP)
+- [week 3](weekly/week3.md)
+- [week 4](weekly/week4.md)
+- [week 5](weekly/week5.md)
+- [week 6](weekly/week6.md)
+- [week 7](weekly/week7.md)
+- [week 8](weekly/week8.md) (ON GOING)
