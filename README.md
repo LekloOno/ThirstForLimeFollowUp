@@ -19,11 +19,15 @@ Some compact briefs that only focus on the user side, by new version, not necess
 
 I don't mention too technical aspects, intentions, constraints, just list out newly implemented features/fixes/changes/tweaks that are relevant to the user.
 
-
-### [v0.2](patch_notes_briefs/v0.2.md)    
+### [v0.1 - Sand pit arena](patch_notes_briefs/v0.1-brief.md)
 
 Brief :
-- [v0.2](patch_notes_briefs/v0.2-brief.md)
+- [v0.1 brief](patch_notes_briefs/v0.1-brief.md)
+ 
+### [v0.2 - Tackling feedback](patch_notes_briefs/v0.2-brief.md)    
+
+Brief :
+- [v0.2 brief](patch_notes_briefs/v0.2-brief.md)
 
 Hot fixes :
 - [v0.2.0](patch_notes_briefs/v0.2.x/v0.2.0.md) - Reload system overhaul and more.
@@ -33,10 +37,10 @@ Hot fixes :
 - [v0.2.4](patch_notes_briefs/v0.2.x/v0.2.4.md) - Data base rework (notably for retro-compatibility).
 
 
-### [v0.3](patch_notes_briefs/v0.3.md) (ON GOING)
+### [v0.3 - A full scale experience](patch_notes_briefs/v0.3-brief.md) (ON GOING)
 
 Brief :
-- [v0.3](patch_notes_briefs/v0.3-brief.md)
+- [v0.3 brief](patch_notes_briefs/v0.3-brief.md)
 
 Hot fixes :
 - [v0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md) - Fight the sectors + Various.
