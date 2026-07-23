@@ -66,7 +66,7 @@ This game became part of my first year of master's degree project in may 2026.
 
 Because of that, I wrote some weekly reports following its advancement during that time.
 
-I tried to sometimes go a little in depth in the techniques used, intentions, problems and technical constraints, but some of the earliest weeks are a lot less detailed as I started writing these reports later in the process.
+I tried to, at times, devle a little deeper into the techniques employed, intentions, problems and technical constraints, but some of the early weeks are far less detailed as I started writing these reports later in the process.
 - [week 1](weekly/week1.md) (WIP)
 - [week 2](weekly/week2.md) (WIP)
 - [week 3](weekly/week3.md)
