@@ -42,7 +42,7 @@ Brief :
 Brief :
 - [v0.2 brief](patch_notes_briefs/v0.2-brief.md)
 
-Hot fixes :
+Minors :
 - [v0.2.0](patch_notes_briefs/v0.2.x/v0.2.0.md) - Reload system overhaul and more.
 - [v0.2.1](patch_notes_briefs/v0.2.x/v0.2.1.md) - Various.
 - [v0.2.2](patch_notes_briefs/v0.2.x/v0.2.2.md) - Crosshair editor + Various.
@@ -55,8 +55,9 @@ Hot fixes :
 Brief :
 - [v0.3 brief](patch_notes_briefs/v0.3-brief.md)
 
-Hot fixes :
+Minors :
 - [v0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md) - Fight the sectors + Various.
+- [v0.3.1](patch_notes_briefs/v0.3.x/v0.3.1.md) - More and enhanced UIs.
 
 ## Weekly
 
