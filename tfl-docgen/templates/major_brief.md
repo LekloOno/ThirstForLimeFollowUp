@@ -9,14 +9,13 @@ date: DATE_KEY
 version:
   release: RELEASE_KEY
   major: MAJOR_KEY
-  minor: MINOR_KEY
 
 children:
   - path: RELEASE_KEY.MAJOR_KEY
     type: roadmap_minor
 ---
 <!-- generated:title:start -->
-# RELEASE_KEY.MAJOR_KEY.MINOR_KEY - TITLE_KEY
+# RELEASE_KEY.MAJOR_KEY - TITLE_KEY
 <!-- generated:title:end -->
 
 Intro.

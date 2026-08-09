@@ -7,9 +7,9 @@ title: TITLE_KEY
 date: DATE_KEY
 
 version:
-    release: RELEASE_KEY
-    major: MAJOR_KEY
-    minor: MINOR_KEY
+  release: RELEASE_KEY
+  major: MAJOR_KEY
+  minor: MINOR_KEY
 ---
 <!-- generated:title:start -->
 # RELEASE_KEY.MAJOR_KEY.MINOR_KEY - TITLE_KEY

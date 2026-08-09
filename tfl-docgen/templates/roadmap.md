@@ -7,12 +7,12 @@ title: TITLE_KEY
 date: DATE_KEY
 
 version:
-    release: RELEASE_KEY
-    major: MAJOR_KEY
+  release: RELEASE_KEY
+  major: MAJOR_KEY
 
 children:
-    - path: RELEASE_KEY.MAJOR_KEY
-      type: roadmap_minor
+  - path: RELEASE_KEY.MAJOR_KEY
+    type: roadmap_minor
 ---
 <!-- generated:title:start -->
 # RELEASE_KEY.MAJOR_KEY Roadmap - TITLE_KEY
