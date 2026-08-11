@@ -254,11 +254,12 @@ fn default_path(
             p.push(format!("{date}.md"));
         }
         DocType::MajorBrief => {
-            p.push("majors");
+            p.push("major_briefs");
             p.push(format!("v{release}.{major}-brief.md"));
         }
         DocType::PatchNote => {
             p.push("patch_notes");
+            p.push(format!("v{release}.{major}"));
             p.push(format!("v{release}.{major}.{minor}.md"));
         }
         DocType::Roadmap => {
