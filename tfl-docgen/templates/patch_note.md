@@ -37,3 +37,11 @@ Bug/oversight fixes.
 ## Optimizations
 
 Optimizations.
+
+## Removed
+
+Removed content and systems.
+
+## Known issues
+
+Known bugs, crashes, and other issues, that aren't patched yet.
