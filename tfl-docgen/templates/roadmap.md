@@ -9,10 +9,6 @@ date: DATE_KEY
 version:
   release: RELEASE_KEY
   major: MAJOR_KEY
-
-children:
-  - path: RELEASE_KEY.MAJOR_KEY
-    type: roadmap_minor
 ---
 <!-- generated:title:start -->
 # RELEASE_KEY.MAJOR_KEY Roadmap - TITLE_KEY
@@ -23,9 +19,9 @@ Intro.
 <!-- generated:toc:start -->
 <!-- generated:toc:end -->
 
+<!-- generated:minors-table:start -->
 ## Minors
 
-<!-- generated:minors-table:start -->
 | version       | status        | roadmap   |
 |---------------|---------------|-----------|
 | `RELEASE_KEY.MAJOR_KEY.0` | 🔵 COMPLETED  | [0_MINOR_TITLE](RELEASE_KEY.MAJOR_KEY/RELEASE_KEY.MAJOR_KEY.0.md) |
