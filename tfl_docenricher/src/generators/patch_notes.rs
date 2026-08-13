@@ -1,3 +1,4 @@
+use crate::frontmatter::DocType;
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
@@ -49,7 +50,7 @@ pub(crate) fn render_patch_notes_table(
 ) -> Result<Option<String>> {
     let dir_name = format!("v{release}.{major}");
     let dir = ctx.repo_root.join("patch_notes").join(&dir_name);
-    let mut siblings = scan_siblings(&dir, "patch_note")?;
+    let mut siblings = scan_siblings(&dir, DocType::PatchNote)?;
     siblings.sort_by_key(|fm| fm.version.and_then(|v| v.minor).unwrap_or(u32::MAX));
 
     if siblings.is_empty() {

@@ -1,3 +1,4 @@
+use crate::frontmatter::DocType;
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
@@ -28,18 +29,18 @@ impl Generator for Title {
 
     fn generate(&self, ctx: &Context) -> Result<String> {
         let fm = ctx.frontmatter;
-        let heading = match fm.doc_type.as_str() {
-            "guide" | "log" => format!("# {}", fm.title),
-            "major_brief" => {
-                let v = require_version(fm, "major_brief")?;
+        let heading = match fm.doc_type {
+            DocType::Guide | DocType::Readme | DocType::Log => format!("# {}", fm.title),
+            DocType::MajorBrief => {
+                let v = require_version(fm)?;
                 format!("# {}.{} - {}", v.release, v.major, fm.title)
             }
-            "roadmap" => {
-                let v = require_version(fm, "roadmap")?;
+            DocType::Roadmap => {
+                let v = require_version(fm)?;
                 format!("# {}.{} Roadmap - {}", v.release, v.major, fm.title)
             }
-            "patch_note" | "roadmap_minor" => {
-                let v = require_version(fm, &fm.doc_type)?;
+            DocType::PatchNote | DocType::RoadmapMinor => {
+                let v = require_version(fm)?;
                 let minor = v.minor.ok_or_else(|| {
                     Error::Generator(format!(
                         "{} requires version.minor to build its title",
@@ -48,21 +49,18 @@ impl Generator for Title {
                 })?;
                 format!("# {}.{}.{} - {}", v.release, v.major, minor, fm.title)
             }
-            other => {
-                return Err(Error::Generator(format!(
-                    "no title convention known for doc type '{other}'"
-                )))
-            }
         };
         Ok(heading)
     }
 }
 
-fn require_version<'a>(
-    fm: &'a crate::frontmatter::Frontmatter,
-    doc_type: &str,
-) -> Result<&'a crate::frontmatter::Version> {
+fn require_version(
+    fm: &crate::frontmatter::Frontmatter,
+) -> Result<&crate::frontmatter::Version> {
     fm.version.as_ref().ok_or_else(|| {
-        Error::Generator(format!("{doc_type} requires a version block to build its title"))
+        Error::Generator(format!(
+            "{} requires a version block to build its title",
+            fm.doc_type
+        ))
     })
 }

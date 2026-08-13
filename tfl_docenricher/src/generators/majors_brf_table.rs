@@ -1,3 +1,4 @@
+use crate::frontmatter::DocType;
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
@@ -41,7 +42,7 @@ fn render_majors_table(ctx: &Context) -> Result<Option<String>> {
     // scan_siblings only picks up direct .md files, so the vR.M/ minor
     // subdirectories living alongside these docs are naturally skipped —
     // no separate "top-level only" logic needed.
-    let mut majors = scan_siblings(&dir, "major_brief")?;
+    let mut majors = scan_siblings(&dir, DocType::MajorBrief)?;
     majors.sort_by_key(|fm| fm.version.map(|v| (v.release, v.major)).unwrap_or((u32::MAX, u32::MAX)));
  
     if majors.is_empty() {

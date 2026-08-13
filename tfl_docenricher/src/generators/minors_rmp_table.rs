@@ -1,3 +1,4 @@
+use crate::frontmatter::DocType;
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
@@ -50,7 +51,7 @@ pub(crate) fn render_minors_table(
 ) -> Result<Option<String>> {
     let dir_name = format!("v{release}.{major}");
     let dir = ctx.repo_root.join("roadmaps").join(&dir_name);
-    let mut siblings = scan_siblings(&dir, "roadmap_minor")?;
+    let mut siblings = scan_siblings(&dir, DocType::RoadmapMinor)?;
     siblings.sort_by_key(|fm| fm.version.and_then(|v| v.minor).unwrap_or(u32::MAX));
 
     if siblings.is_empty() {

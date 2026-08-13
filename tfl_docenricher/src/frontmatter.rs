@@ -4,7 +4,7 @@ use serde::Deserialize;
 pub struct Frontmatter {
     pub id: String,
     #[serde(rename = "type")]
-    pub doc_type: String,
+    pub doc_type: DocType,
     pub status: String,
     #[serde(default)]
     pub roadmap_status: Option<String>,
@@ -12,6 +12,37 @@ pub struct Frontmatter {
     pub date: String,
     #[serde(default)]
     pub version: Option<Version>,
+}
+
+/// The closed set of document types. Deserializing an unrecognized
+/// `type:` value is a frontmatter parse error rather than something
+/// that silently becomes a string and fails later, wherever it happens
+/// to get compared.
+#[derive(Debug, Deserialize, Clone, Copy, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum DocType {
+    Readme,
+    Guide,
+    Log,
+    MajorBrief,
+    PatchNote,
+    Roadmap,
+    RoadmapMinor,
+}
+
+impl std::fmt::Display for DocType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let s = match self {
+            DocType::Readme => "readme",
+            DocType::Guide => "guide",
+            DocType::Log => "log",
+            DocType::MajorBrief => "major_brief",
+            DocType::PatchNote => "patch_note",
+            DocType::Roadmap => "roadmap",
+            DocType::RoadmapMinor => "roadmap_minor",
+        };
+        write!(f, "{s}")
+    }
 }
 
 #[derive(Debug, Deserialize, Clone, Copy)]

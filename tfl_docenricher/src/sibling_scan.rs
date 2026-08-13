@@ -1,5 +1,5 @@
 use crate::error::{Result, Error};
-use crate::frontmatter::{split_frontmatter, Frontmatter};
+use crate::frontmatter::{DocType, Frontmatter, split_frontmatter};
 use std::fs;
 use std::path::Path;
 
@@ -12,7 +12,7 @@ use std::path::Path;
 ///
 /// A missing directory is not an error: it just means no children exist
 /// yet (e.g. a freshly created roadmap with no minors published).
-pub fn scan_siblings(dir: &Path, expected_type: &str) -> Result<Vec<Frontmatter>> {
+pub fn scan_siblings(dir: &Path, expected_type: DocType) -> Result<Vec<Frontmatter>> {
     if !dir.exists() {
         return Ok(Vec::new());
     }
