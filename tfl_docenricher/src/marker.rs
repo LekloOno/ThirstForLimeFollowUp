@@ -1,6 +1,8 @@
 use crate::context::Context;
-use crate::error::{Result, Error};
+use error::{Result, MarkerError};
 use crate::generator::Registry;
+
+pub mod error;
 
 const START_PREFIX: &str = "<!-- generated:";
 const START_SUFFIX: &str = ":start -->";
@@ -19,6 +21,82 @@ fn parse_marker(line: &str) -> Option<(&str, bool)> {
     None
 }
 
+/// Scans forward from `start_idx + 1` for the `:end` marker matching `key`.
+/// Any other marker encountered first, a mismatched end, or a nested
+/// start, is an error rather than something to skip past.
+fn find_matching_end(
+    lines: &[&str],
+    key: &str,
+    start_idx: usize,
+    ctx: &Context,
+) -> Result<usize> {
+    let mut j = start_idx + 1;
+    while j < lines.len() {
+        if let Some((found_key, is_start)) = parse_marker(lines[j]) {
+            if is_start {
+                return Err(MarkerError::NestedBlock {
+                    ctx_path: ctx.file_path.display().to_string(),
+                    line: j + 1,
+                    key: key.to_string(),
+                    nested_key: found_key.to_string(),
+                });
+            }
+            if found_key != key {
+                return Err(MarkerError::MismatchEnd {
+                    ctx_path: ctx.file_path.display().to_string(),
+                    line: j + 1,
+                    key: key.to_string(),
+                    mismatch_key: found_key.to_string(),
+                });
+            }
+            return Ok(j);
+        }
+        j += 1;
+    }
+    Err(MarkerError::MissingEnd {
+        ctx_path: ctx.file_path.display().to_string(),
+        line: start_idx + 1,
+        key: key.to_string(),
+    })
+}
+
+/// Produces the replacement lines for the block between `start_idx` and
+/// `end_idx` (exclusive of both marker lines): the registered generator's
+/// output if `key` is known, or the block's existing lines untouched (with
+/// a warning) if it isn't.
+fn resolve_block_content(
+    lines: &[&str],
+    registry: &Registry,
+    ctx: &Context,
+    key: &str,
+    start_idx: usize,
+    end_idx: usize,
+) -> crate::error::Result<Vec<String>> {
+    match registry.get(key) {
+        None => {
+            eprintln!(
+                "warning: {}: line {}: unknown generator key '{key}' \u{2014} no generator is registered under that name, leaving block as-is",
+                ctx.file_path.display(),
+                start_idx + 1
+            );
+            Ok(lines[(start_idx + 1)..end_idx]
+                .iter()
+                .map(|l| l.to_string())
+                .collect())
+        }
+        Some(generator) => {
+            let generated = generator.generate(ctx).map_err(|e| {
+                crate::error::Error::Generator(format!(
+                    "{}: block '{key}' (line {}): {e}",
+                    ctx.file_path.display(),
+                    start_idx + 1
+                ))
+            })?;
+            Ok(generated.lines().map(|l| l.to_string()).collect())
+        }
+    }
+}
+
 /// Scans `body` for `<!-- generated:KEY:start -->` / `:end -->` marker
 /// pairs, regenerates the content strictly between each pair using the
 /// generator registered under KEY, and returns the resulting body.
@@ -30,95 +108,38 @@ pub fn process_markers(
     body: &str,
     registry: &Registry,
     ctx: &Context,
-) -> Result<String> {
+) -> crate::error::Result<String> {
     let lines: Vec<&str> = body.lines().collect();
     let mut out_lines: Vec<String> = Vec::new();
     let mut i = 0;
-
+ 
     while i < lines.len() {
-        let line = lines[i];
-        match parse_marker(line) {
+        match parse_marker(lines[i]) {
             Some((key, true)) => {
                 let key = key.to_string();
-                out_lines.push(line.to_string());
-
-                let mut end_idx = None;
-                let mut j = i + 1;
-                while j < lines.len() {
-                    if let Some((end_key, is_start)) = parse_marker(lines[j]) {
-                        if !is_start {
-                            if end_key != key {
-                                return Err(Error::Marker(format!(
-                                    "{}: line {}: expected end marker for '{key}' but found end marker for '{end_key}'",
-                                    ctx.file_path.display(),
-                                    j + 1
-                                )));
-                            }
-                            end_idx = Some(j);
-                            break;
-                        } else {
-                            return Err(Error::Marker(format!(
-                                "{}: line {}: nested generated block '{end_key}' found inside '{key}' \u{2014} generated blocks cannot nest",
-                                ctx.file_path.display(),
-                                j + 1
-                            )));
-                        }
-                    }
-                    j += 1;
-                }
-
-                let end_idx = end_idx.ok_or_else(|| {
-                    Error::Marker(format!(
-                        "{}: line {}: no matching end marker for generated block '{key}'",
-                        ctx.file_path.display(),
-                        i + 1
-                    ))
-                })?;
-
-                match registry.get(key.as_str()) {
-                    None => {
-                        eprintln!(
-                            "warning: {}: line {}: unknown generator key '{key}' \u{2014} no generator is registered under that name, leaving block as-is",
-                            ctx.file_path.display(),
-                            i + 1
-                        );
-                        // Preserve the block's existing content untouched.
-                        for l in &lines[(i + 1)..end_idx] {
-                            out_lines.push(l.to_string());
-                        }
-                    }
-                    Some(generator) => {
-                        let generated = generator.generate(ctx).map_err(|e| {
-                            Error::Generator(format!(
-                                "{}: block '{key}' (line {}): {e}",
-                                ctx.file_path.display(),
-                                i + 1
-                            ))
-                        })?;
-
-                        for l in generated.lines() {
-                            out_lines.push(l.to_string());
-                        }
-                    }
-                }
-
+                let end_idx = find_matching_end(&lines, &key, i, ctx)?;
+                let block_lines = resolve_block_content(&lines, registry, ctx, &key, i, end_idx)?;
+ 
+                out_lines.push(lines[i].to_string());
+                out_lines.extend(block_lines);
                 out_lines.push(lines[end_idx].to_string());
+ 
                 i = end_idx + 1;
             }
             Some((key, false)) => {
-                return Err(Error::Marker(format!(
-                    "{}: line {}: end marker for '{key}' found without a matching start marker",
-                    ctx.file_path.display(),
-                    i + 1
-                )));
+                return Err(MarkerError::MissingStart {
+                    ctx_path: ctx.file_path.display().to_string(),
+                    line: i + 1,
+                    key: key.to_string(),
+                }.into());
             }
             None => {
-                out_lines.push(line.to_string());
+                out_lines.push(lines[i].to_string());
                 i += 1;
             }
         }
     }
-
+ 
     let mut result = out_lines.join("\n");
     result.push('\n');
     Ok(result)

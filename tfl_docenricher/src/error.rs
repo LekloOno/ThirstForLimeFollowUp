@@ -1,5 +1,7 @@
 use thiserror::Error;
 
+use crate::marker::error::MarkerError;
+
 pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug, Error)]
@@ -11,7 +13,7 @@ pub enum Error {
     Frontmatter(String),
 
     #[error("marker error: {0}")]
-    Marker(String),
+    Marker(#[from] MarkerError),
 
     #[error("generator error: {0}")]
     Generator(String),
