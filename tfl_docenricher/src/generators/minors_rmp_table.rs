@@ -1,6 +1,7 @@
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
+use crate::label;
 use crate::links::family_link;
 use crate::sibling_scan::scan_siblings;
 
@@ -9,11 +10,11 @@ use crate::sibling_scan::scan_siblings;
 /// reading each one's own frontmatter (status is never duplicated into
 /// the parent, this table is always a reflection of the children, never
 /// a second source of truth for it).
-pub struct MinorsTable;
+pub struct MinorsRmpTable;
 
-impl Generator for MinorsTable {
+impl Generator for MinorsRmpTable {
     fn key() -> &'static str {
-        "minors-table"
+        "minors-rmp-table"
     }
 
     fn depends_on_structure() -> bool
@@ -25,7 +26,7 @@ impl Generator for MinorsTable {
     fn new() -> Box<dyn Generator>
     where
         Self: Sized {
-        Box::new(MinorsTable {})
+        Box::new(MinorsRmpTable {})
     }
 
     fn generate(&self, ctx: &Context) -> Result<String> {
@@ -67,7 +68,7 @@ pub(crate) fn render_minors_table(
             Error::Generator(format!("{}: roadmap_minor missing version.minor", fm.id))
         })?;
         let version_str = format!("{}.{}.{}", sv.release, sv.major, minor);
-        let status = roadmap_status_label(fm.roadmap_status.as_deref().unwrap_or("planned"))?;
+        let status = label::roadmap_status_label(fm.roadmap_status.as_deref().unwrap_or("planned"))?;
         let link = family_link(ctx, "roadmaps", &format!("{dir_name}/v{version_str}.md"))?;
         out.push_str(&format!(
             "| `{version_str}` | {status} | [{}]({link}) |\n",
@@ -76,20 +77,4 @@ pub(crate) fn render_minors_table(
     }
     out.pop();
     Ok(Some(out))
-}
-
-fn roadmap_status_label(status: &str) -> Result<&'static str> {
-    Ok(match status {
-        "planned" => "\u{26AB} PLANNED",
-        "cancelled" => "\u{1F534} CANCELLED",
-        "delayed" => "\u{1F7E0} DELAYED",
-        "wip" => "\u{1F7E1} WIP",
-        "completed" => "\u{1F535} COMPLETED",
-        "live" => "\u{1F7E2} LIVE",
-        other => {
-            return Err(Error::Generator(format!(
-                "unknown roadmap_status '{other}' (expected one of planned, cancelled, delayed, wip, completed, live)"
-            )))
-        }
-    })
 }

@@ -93,7 +93,7 @@ fn unique_slug(text: &str, used: &mut HashMap<String, u32>) -> String {
 
 /// Everything a Generator needs to do its job: the file's own frontmatter
 /// and heading outline, plus enough repo context to look up sibling
-/// documents (used by generators like minors-table / patch-notes that
+/// documents (used by generators like minors-rmp-table / patch-notes that
 /// summarize a family of child documents by directory convention).
 pub struct Context<'a> {
     pub file_path: &'a Path,

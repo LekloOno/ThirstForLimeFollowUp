@@ -1,4 +1,4 @@
-use crate::generators::minors_table::render_minors_table;
+use crate::generators::minors_rmp_table::render_minors_table;
 use crate::generator::Generator;
 use crate::context::Context;
 use crate::error::{Result, Error};
@@ -12,7 +12,7 @@ pub struct Roadmaps;
 
 impl Generator for Roadmaps {
     fn key() -> &'static str {
-        "roadmaps"
+        "major-roadmaps"
     }
 
     fn depends_on_structure() -> bool

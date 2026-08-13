@@ -6,3 +6,4 @@ pub mod sibling_scan;
 pub mod error;
 pub mod generator;
 pub mod generators;
+pub mod label;

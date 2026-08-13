@@ -6,7 +6,7 @@ use crate::sibling_scan::scan_siblings;
 
 /// Builds the `## Patch notes` block on a `major_brief` doc by scanning
 /// `patch_notes/v{release}.{major}/*.md` for `patch_note` siblings. Like
-/// minors-table, this is a pure reflection of the children's own
+/// minors-rmp-table, this is a pure reflection of the children's own
 /// frontmatter — the relationship lives in directory convention, not in
 /// a stored `children` link, since it's presentational, not semantic.
 pub struct PatchNotes;
