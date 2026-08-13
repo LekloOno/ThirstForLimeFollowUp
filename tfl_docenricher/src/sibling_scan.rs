@@ -1,5 +1,5 @@
 use crate::error::{Result, Error};
-use crate::frontmatter::{DocType, Frontmatter, split_frontmatter};
+use tfl_docshared::frontmatter::{DocType, Frontmatter, split_frontmatter};
 use std::fs;
 use std::path::Path;
 

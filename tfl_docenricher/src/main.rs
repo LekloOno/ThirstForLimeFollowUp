@@ -1,7 +1,7 @@
 use clap::Parser;
-use tfl_docenricher::context::{Ast, Context};
+use tfl_docshared::context::{Ast, Context};
+use tfl_docshared::frontmatter::split_frontmatter;
 use tfl_docenricher::error::{Result, Error};
-use tfl_docenricher::frontmatter::split_frontmatter;
 use tfl_docenricher::generators;
 use tfl_docenricher::marker;
 use std::fs;

@@ -1,4 +1,7 @@
+pub mod error;
+
 use serde::Deserialize;
+use error::{Result, FrontmatterError};
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Frontmatter {
@@ -56,12 +59,12 @@ pub struct Version {
 /// Splits a raw document into (frontmatter, raw_yaml_text, body).
 /// Only the body is ever touched by enrichment - the raw YAML text is
 /// preserved byte-for-byte so frontmatter formatting is never altered.
-pub fn split_frontmatter(raw: &str) -> Result<(Frontmatter, String, String), String> {
+pub fn split_frontmatter(raw: &str) -> Result<(Frontmatter, String, String)> {
     let raw = raw.strip_prefix('\u{feff}').unwrap_or(raw); // tolerate a BOM
     let mut rest = raw
         .strip_prefix("---\n")
         .or_else(|| raw.strip_prefix("---\r\n"))
-        .ok_or_else(|| "document must start with a '---' YAML frontmatter block".to_string())?;
+        .ok_or_else(|| FrontmatterError::MissingStart)?;
 
     let mut yaml_end = None;
     let mut offset = 0usize;
@@ -81,13 +84,12 @@ pub fn split_frontmatter(raw: &str) -> Result<(Frontmatter, String, String), Str
     }
 
     let yaml_end = yaml_end
-        .ok_or_else(|| "could not find closing '---' for frontmatter block".to_string())?;
+        .ok_or_else(|| FrontmatterError::MissingEnd)?;
     let yaml_str = rest[..yaml_end].trim_end_matches(['\n', '\r']).to_string();
     rest = &rest[offset..];
     let body = rest.to_string();
 
-    let fm: Frontmatter = serde_yaml::from_str(&yaml_str)
-        .map_err(|e| format!("invalid frontmatter YAML: {e}"))?;
+    let fm: Frontmatter = serde_yaml::from_str(&yaml_str)?;
 
     Ok((fm, yaml_str, body))
 }

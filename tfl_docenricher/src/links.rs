@@ -1,4 +1,4 @@
-use crate::context::Context;
+use tfl_docshared::context::Context;
 use crate::error::{Result, Error};
 
 /// Builds a relative markdown link from the current document to

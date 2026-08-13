@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-use crate::marker::error::MarkerError;
+use tfl_docshared::marker::error::MarkerError;
 
 pub type Result<T> = std::result::Result<T, Error>;
 

@@ -1,6 +1,6 @@
-use crate::frontmatter::DocType;
+use tfl_docshared::frontmatter::DocType;
+use tfl_docshared::context::Context;
 use crate::generator::Generator;
-use crate::context::Context;
 use crate::error::{Result, Error};
 use crate::label;
 use crate::links::family_link;

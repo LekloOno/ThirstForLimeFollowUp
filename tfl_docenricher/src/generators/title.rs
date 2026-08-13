@@ -1,6 +1,6 @@
-use crate::frontmatter::DocType;
+use tfl_docshared::frontmatter::DocType;
+use tfl_docshared::context::Context;
 use crate::generator::Generator;
-use crate::context::Context;
 use crate::error::{Result, Error};
 
 /// Regenerates the `# ...` H1 heading from frontmatter
@@ -55,8 +55,8 @@ impl Generator for Title {
 }
 
 fn require_version(
-    fm: &crate::frontmatter::Frontmatter,
-) -> Result<&crate::frontmatter::Version> {
+    fm: &tfl_docshared::frontmatter::Frontmatter,
+) -> Result<&tfl_docshared::frontmatter::Version> {
     fm.version.as_ref().ok_or_else(|| {
         Error::Generator(format!(
             "{} requires a version block to build its title",

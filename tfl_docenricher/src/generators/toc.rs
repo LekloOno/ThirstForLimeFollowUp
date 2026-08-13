@@ -1,5 +1,5 @@
+use tfl_docshared::context::Context;
 use crate::generator::Generator;
-use crate::context::Context;
 use crate::error::Result;
 
 /// Builds a nested bullet list from the document's own heading outline.

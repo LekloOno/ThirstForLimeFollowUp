@@ -1,6 +1,6 @@
+use tfl_docshared::context::Context;
 use crate::generators::minors_rmp_table::render_minors_table;
 use crate::generator::Generator;
-use crate::context::Context;
 use crate::error::{Result, Error};
 use crate::links::family_link;
 
