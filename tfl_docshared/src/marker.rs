@@ -1,4 +1,4 @@
-use crate::{context::Context, marker::error::{MarkerError, Result}};
+use crate::marker::error::{MarkerError, Result};
 
 pub mod error;
 
@@ -26,14 +26,14 @@ pub fn find_matching_end(
     lines: &[&str],
     key: &str,
     start_idx: usize,
-    ctx: &Context,
+    path: &str,
 ) -> Result<usize> {
     let mut j = start_idx + 1;
     while j < lines.len() {
         if let Some((found_key, is_start)) = parse_marker(lines[j]) {
             if is_start {
                 return Err(MarkerError::NestedBlock {
-                    ctx_path: ctx.file_path.display().to_string(),
+                    ctx_path: path.to_string(),
                     line: j + 1,
                     key: key.to_string(),
                     nested_key: found_key.to_string(),
@@ -41,7 +41,7 @@ pub fn find_matching_end(
             }
             if found_key != key {
                 return Err(MarkerError::MismatchEnd {
-                    ctx_path: ctx.file_path.display().to_string(),
+                    ctx_path: path.to_string(),
                     line: j + 1,
                     key: key.to_string(),
                     mismatch_key: found_key.to_string(),
@@ -52,7 +52,7 @@ pub fn find_matching_end(
         j += 1;
     }
     Err(MarkerError::MissingEnd {
-        ctx_path: ctx.file_path.display().to_string(),
+        ctx_path: path.to_string(),
         line: start_idx + 1,
         key: key.to_string(),
     })
@@ -64,7 +64,7 @@ pub fn find_matching_end(
 /// Content outside generated blocks is preserved.
 pub fn clean_markers<'a>(
     lines: &[&'a str],
-    ctx: &Context,
+    path: &str,
 ) -> Result<Vec<&'a str>> {
     let mut out_lines = Vec::new();
     let mut i = 0;
@@ -73,13 +73,13 @@ pub fn clean_markers<'a>(
         match parse_marker(lines[i]) {
             Some((key, true)) => {
                 // Skip the entire block, including both markers.
-                let end_idx = find_matching_end(lines, key, i, ctx)?;
+                let end_idx = find_matching_end(lines, key, i, path)?;
                 i = end_idx + 1;
             }
             Some((key, false)) => {
                 // An end marker without a start marker.
                 return Err(MarkerError::MissingStart {
-                    ctx_path: ctx.file_path.display().to_string(),
+                    ctx_path: path.to_string(),
                     line: i + 1,
                     key: key.to_string(),
                 }

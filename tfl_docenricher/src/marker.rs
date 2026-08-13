@@ -60,7 +60,7 @@ pub fn process_markers(
         match marker::parse_marker(lines[i]) {
             Some((key, true)) => {
                 let key = key.to_string();
-                let end_idx = marker::find_matching_end(&lines, &key, i, ctx)?;
+                let end_idx = marker::find_matching_end(&lines, &key, i, &ctx.file_path.display().to_string())?;
                 let block_lines = resolve_block_content(&lines, registry, ctx, &key, i, end_idx)?;
  
                 out_lines.push(lines[i].to_string());

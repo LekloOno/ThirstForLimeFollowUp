@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-use tfl_docshared::marker::error::MarkerError;
+use tfl_docshared::{frontmatter::error::FrontmatterError, marker::error::MarkerError};
 
 pub type Result<T> = std::result::Result<T, Error>;
 
@@ -10,7 +10,7 @@ pub enum Error {
     Io(#[from] std::io::Error),
 
     #[error("frontmatter error: {0}")]
-    Frontmatter(String),
+    Frontmatter(#[from] FrontmatterError),
 
     #[error("marker error: {0}")]
     Marker(#[from] MarkerError),

@@ -27,8 +27,7 @@ pub fn scan_siblings(dir: &Path, expected_type: DocType) -> Result<Vec<Frontmatt
     for entry in entries {
         let path = entry.path();
         let raw = fs::read_to_string(&path)?;
-        let (fm, _, _) = split_frontmatter(&raw)
-            .map_err(|e| Error::Frontmatter(format!("{}: {e}", path.display())))?;
+        let (fm, _, _) = split_frontmatter(&raw)?;
 
         if fm.doc_type != expected_type {
             return Err(Error::Generator(format!(

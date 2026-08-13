@@ -42,8 +42,7 @@ struct Cli {
 /// correct if a future generator's output depends on another's.
 fn enrich(raw: &str, path: &PathBuf, repo_root: &PathBuf) -> Result<String> {
     let registry = generators::build_registry();
-    let (fm, yaml, mut body) = split_frontmatter(raw)
-        .map_err(|e| Error::Frontmatter(format!("{}: {e}", path.display())))?;
+    let (fm, yaml, mut body) = split_frontmatter(raw)?;
 
     for pass in 0..MAX_PASSES {
         let ast = Ast::parse(&body);
