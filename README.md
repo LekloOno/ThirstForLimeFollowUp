@@ -1,14 +1,24 @@
-# Thirs for lime - follow up
+---
+id: readme
+type: readme
+status: draft
 
-- [Thirs for lime - follow up](#thirs-for-lime---follow-up)
-  - [Road map](#road-map)
-    - [On going](#on-going)
-    - [Coming up](#coming-up)
-  - [Patch notes briefs](#patch-notes-briefs)
-    - [v0.1 - Sand pit arena](#v01---sand-pit-arena)
-    - [v0.2 - Tackling feedback](#v02---tackling-feedback)
-    - [v0.3 - A full scale experience (ON GOING)](#v03---a-full-scale-experience-on-going)
-  - [Weekly](#weekly)
+title: Thirst for lime - follow up
+date: 2026-08-11
+---
+<!-- generated:title:start -->
+# Thirst for lime - follow up
+<!-- generated:title:end -->
+
+<!-- generated:toc:start -->
+- [Road map](#road-map)
+  - [On going](#on-going)
+  - [Coming up](#coming-up)
+- [Majors](#majors)
+- [Patch notes briefs](#patch-notes-briefs)
+- [Majors](#majors-1)
+- [Weekly](#weekly)
+<!-- generated:toc:end -->
 
 ## Road map
 
@@ -19,45 +29,35 @@ Last published version - [0.3.1](roadmap/v0.3-roadmap.md#031---more-ui) (part of
 ### Coming up
 
 The current plan is as follows, but later planned priorities are subject to change.
-- [v0.3 roadmap](roadmap/v0.3-roadmap.md) - Full scale map and mode
-- [v0.4 roadmap](roadmap/v0.4-roadmap.md) - Consumeable items
-- [v0.5 roadmap](roadmap/v0.5-roadmap.md) - Ultimates
-- [v0.6 roadmap](roadmap/v0.6-roadmap.md) - View models
+
+<!-- generated:majors-rmp-table:start -->
+## Majors
+
+| version       | status        | roadmap   |
+|---------------|---------------|-----------|
+| `0.3` | 🟡 WIP | [Full scale map and mode](roadmaps/v0.3-roadmap.md) |
+| `0.4` | ⚫ PLANNED | [Consumeable items](roadmaps/v0.4-roadmap.md) |
+| `0.5` | ⚫ PLANNED | [Ultimates](roadmaps/v0.5-roadmap.md) |
+| `0.6` | ⚫ PLANNED | [View models](roadmaps/v0.6-roadmap.md) |
+<!-- generated:majors-rmp-table:end -->
 
 ## Patch notes briefs
 
-Some compact briefs that only focus on the user side, by new version, not necessarily chronological and structured by features.
+Some compact briefs that focus on the user side, by new version, not necessarily chronological and structured by features.
 
 I don't mention too technical aspects, intentions, constraints, just list out newly implemented features/fixes/changes/tweaks that are relevant to the user.
 
 The major version briefs, however, do depict the overall intentions, goals and approaches of each new major, yet without delving in too much details.
 
-### [v0.1 - Sand pit arena](patch_notes_briefs/v0.1-brief.md)
+<!-- generated:majors-brf-table:start -->
+## Majors
 
-Brief :
-- [v0.1 brief](patch_notes_briefs/v0.1-brief.md)
- 
-### [v0.2 - Tackling feedback](patch_notes_briefs/v0.2-brief.md)    
-
-Brief :
-- [v0.2 brief](patch_notes_briefs/v0.2-brief.md)
-
-Minors :
-- [v0.2.0](patch_notes_briefs/v0.2.x/v0.2.0.md) - Reload system overhaul and more.
-- [v0.2.1](patch_notes_briefs/v0.2.x/v0.2.1.md) - Various.
-- [v0.2.2](patch_notes_briefs/v0.2.x/v0.2.2.md) - Crosshair editor + Various.
-- [v0.2.3](patch_notes_briefs/v0.2.x/v0.2.3.md) - Various QoF and feedback.
-- [v0.2.4](patch_notes_briefs/v0.2.x/v0.2.4.md) - Data base rework (notably for retro-compatibility).
-
-
-### [v0.3 - A full scale experience](patch_notes_briefs/v0.3-brief.md) (ON GOING)
-
-Brief :
-- [v0.3 brief](patch_notes_briefs/v0.3-brief.md)
-
-Minors :
-- [v0.3.0](patch_notes_briefs/v0.3.x/v0.3.0.md) - Fight the sectors + Various.
-- [v0.3.1](patch_notes_briefs/v0.3.x/v0.3.1.md) - More and enhanced UIs.
+| version       | brief   |
+|---------------|-----------|
+| `0.1` | [Sand pit arena](major_briefs/v0.1-brief.md) |
+| `0.2` | [Tackling feedback](major_briefs/v0.2-brief.md) |
+| `0.3` | [A full scale experience to confront the core mechanics](major_briefs/v0.3-brief.md) |
+<!-- generated:majors-brf-table:end -->
 
 ## Weekly
 
